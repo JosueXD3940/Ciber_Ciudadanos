@@ -1,0 +1,14 @@
+-- Base de datos para Ciber Ciudadanos (MySQL en XAMPP)
+-- Ejecuta este script en phpMyAdmin o en la consola de MySQL
+
+CREATE DATABASE IF NOT EXISTS ciber_ciudadanos;
+USE ciber_ciudadanos;
+
+CREATE TABLE IF NOT EXISTS usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario VARCHAR(100) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY uk_usuario (usuario),
+    UNIQUE KEY uk_email (email)
+);

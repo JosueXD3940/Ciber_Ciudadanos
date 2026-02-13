@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro Ciber-Ciudadanos</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+
+<div id="app">
+    <h2>Registro Ciber-Ciudadano</h2>
+
+    <!-- Mensaje global -->
+    <div v-if="mensaje" class="mensaje" :class="{ success: mensaje.includes('✅') }">
+        {{ mensaje }}
+    </div>
+
+    <!-- Formulario único: usuario, email, contraseñas y captcha juntos -->
+    <form @submit.prevent="enviarFormulario" novalidate class="formulario">
+
+        <div class="form-group">
+            <label>Usuario</label>
+            <input type="text" v-model="form.username" required minlength="3" placeholder="Nombre de usuario">
+        </div>
+
+        <div class="form-group form-group-email">
+            <label>Email</label>
+            <input type="email" v-model="form.email" required placeholder="correo@ejemplo.com" class="input-con-marco">
+        </div>
+
+        <div class="form-group">
+            <label>Contraseña</label>
+            <input type="password"
+                   v-model="form.password"
+                   required
+                   minlength="8"
+                   @input="validarPassword">
+            <small v-if="passwordError" class="error">
+                Debe tener al menos una mayúscula y un número
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label>Confirmar Contraseña</label>
+            <input type="password" v-model="form.confirmPassword" required>
+        </div>
+
+        <div class="form-group form-group-captcha">
+            <label>Prueba de humanidad ¿Cuánto es {{ captcha.a }} + {{ captcha.b }}?</label>
+            <div class="captcha-row">
+                <input type="number" v-model="form.captcha" required placeholder="Respuesta">
+                <button type="button" @click="cambiarCaptcha" class="btn-captcha" title="Otro captcha">
+                    Cambiar
+                </button>
+            </div>
+        </div>
+
+        <button type="submit" :disabled="!formValido" class="btn-primary">
+            Registrarse
+        </button>
+
+    </form>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
