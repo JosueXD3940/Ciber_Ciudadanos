@@ -1,5 +1,4 @@
--- Base de datos para Ciber Ciudadanos (MySQL en XAMPP)
--- Ejecuta este script en phpMyAdmin o en la consola de MySQL
+
 
 CREATE DATABASE IF NOT EXISTS ciber_ciudadanos;
 USE ciber_ciudadanos;
